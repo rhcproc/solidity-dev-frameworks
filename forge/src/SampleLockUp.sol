@@ -41,6 +41,11 @@ contract SampleLockUp {
     function withdraw() public {
         Lockup memory lockup = lockups[msg.sender];
         require(block.timestamp >= lockup.lockupStart + lockup.lockupPeriod, "Tokens are still locked");
+        lockups[msg.sender] = Lockup({
+            lockupPeriod: 0,
+            lockupAmount: 0,
+            lockupStart: 0
+        });
 
         KEEPER.transfer(msg.sender, lockup.lockupAmount);
         emit Withdraw(msg.sender, lockup.lockupAmount);

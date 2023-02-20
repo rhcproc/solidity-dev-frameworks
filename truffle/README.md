@@ -61,6 +61,5 @@ $ truffle migrate
 $ truffle test
 ```
 
-
 ## License
 MIT
